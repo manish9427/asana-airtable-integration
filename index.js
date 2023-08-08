@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const axios = require("axios");
-require("dotenv").config(); // Load environment variables from .env file
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,9 +9,7 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 app.post("/webhook", (req, res) => {
-  const taskData = req.body; // Assuming Asana sends task data in the request body
-
-  // Call a function to add the data to Airtable
+  const taskData = req.body;
   addTaskToAirtable(taskData);
 
   res.status(200).json({ message: "Webhook received" });
